@@ -16,7 +16,7 @@ public class Item {
     /**
      *
      */
-    public static String SECTIONS[] = { "AREA!", "AREA1" };
+    public static String SECTIONS[] = { "AREA0", "AREA1", "AREA2", "AREA3", "AREA4" };
 
     // Attributes
     private String name = null;
@@ -40,8 +40,8 @@ public class Item {
      */
     @Override
     public String toString() {
-	String returnString = String.format("Section:	%s\nSection(INT):	%d\nSection(STR):	%s", name,
-		section, SECTIONS[section]);
+	String returnString = String.format("Name:		%s\nSection(INT):	%d\nSection(STR):	%s",
+		name, section, SECTIONS[section]);
 	return returnString;
     }
 
@@ -56,7 +56,6 @@ public class Item {
 	if (outputLocation != null) {
 	    if (outputLocation.charAt(outputLocation.length() - 1) == '/') {
 		location = outputLocation.substring(0, (outputLocation.length() - 1));
-		System.out.println(location);
 	    } else {
 		location = outputLocation;
 	    }
@@ -72,9 +71,8 @@ public class Item {
      */
     public boolean toTxt(String outputLocation) {
 	boolean written = false;
-	outputLocation = this.checkLocation(outputLocation);
 	try {
-	    PrintStream outputFile = new PrintStream(new File(outputLocation + name + ".txt"));
+	    PrintStream outputFile = new PrintStream(new File(checkLocation(outputLocation) + "/" + name + ".txt"));
 	    outputFile.println(this.toString());
 	    written = true;
 	} catch (FileNotFoundException e) {
