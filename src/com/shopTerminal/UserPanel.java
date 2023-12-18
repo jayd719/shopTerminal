@@ -2,6 +2,7 @@ package com.shopTerminal;
 
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class UserPanel extends JFrame {
 
     public UserPanel() {
