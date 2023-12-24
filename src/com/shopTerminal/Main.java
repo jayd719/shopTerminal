@@ -5,6 +5,7 @@ package com.shopTerminal;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
@@ -16,6 +17,15 @@ import javax.swing.border.EmptyBorder;
  * Main
  */
 public class Main {
+
+    private static JLabel titleLabel() {
+	JLabel tL = new JLabel("Work Order Tacker");
+	// tL - Title Label
+	tL.setFont(new Font(Font.SERIF, Font.BOLD, 17));
+	tL.setBorder(new EmptyBorder(2, 40, 1, 1));
+
+	return tL;
+    }
 
     /**
      * @param
@@ -36,18 +46,24 @@ public class Main {
 	f.setLayout(new BorderLayout());
 
 	JPanel panel = new JPanel();
-	panel.setLayout(new GridLayout(2, 3));
+	panel.setLayout(new GridLayout(2, 2));
 	panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 	panel.setSize(100, 200);
 	panel.setBackground(Color.gray);
-	panel.add(new JLabel("Working Directory: "));
-	panel.add(new JLabel(GetFiles.DEFAULT_ADDRESS));
-	panel.add(new JLabel("File Directory"));
-	panel.add(new JLabel(GetFiles.getFilesDirectory()));
+	panel.add(new JLabel(String.format("Working Directory:-%50s", GetFiles.DEFAULT_ADDRESS)));
+	panel.add(new JLabel(String.format("File Directory:-%30s", GetFiles.getFilesDirectory())));
 
-	f.add(new JLabel("thi"), BorderLayout.NORTH);
-	f.add(panel, BorderLayout.CENTER);
-	GetFiles.getWorkOrders();
+	JPanel displayPanel = new JPanel();
+	displayPanel.setLayout(new GridLayout(30, 2));
+	displayPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+	for (String wo : GetFiles.getWorkOrders()) {
+	    displayPanel.add(new JLabel(wo));
+	}
+
+	f.add(titleLabel(), BorderLayout.NORTH);
+	f.add(displayPanel, BorderLayout.CENTER);
+	f.add(panel, BorderLayout.SOUTH);
+//	GetFiles.getWorkOrders();
 
 	f.setVisible(true);
 
