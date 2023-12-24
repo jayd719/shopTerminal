@@ -37,6 +37,8 @@ public class GetFiles {
 	} catch (FileNotFoundException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	    System.out.println("DATA FILES NOT FOUTND\n");
+	    dir.add("DATAFILES NOT FOUND");
 	}
 
 	System.out.print(dir);
