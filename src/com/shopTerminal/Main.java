@@ -5,11 +5,19 @@ package com.shopTerminal;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -25,6 +33,33 @@ public class Main {
 	tL.setBorder(new EmptyBorder(2, 40, 1, 1));
 
 	return tL;
+    }
+
+    private static JMenuBar menuBar() {
+	JMenuBar menuBar = new JMenuBar();
+
+	JMenu functions = new JMenu("Functions");
+
+	JMenuItem updateLive = new JMenuItem("Update CBB Live Excel File");
+	updateLive.addActionListener(new ActionListener() {
+
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		try {
+		    Desktop.getDesktop().open(new File(GetFiles.DATAFILES + "workorders.txt"));
+		} catch (IOException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+
+	    }
+	});
+	functions.add(updateLive);
+	functions.add(new JMenuItem("Start Data Sync"));
+	functions.add(new JMenuItem("Function"));
+
+	menuBar.add(functions);
+	return menuBar;
     }
 
     /**
@@ -60,6 +95,7 @@ public class Main {
 	    displayPanel.add(new JLabel(wo));
 	}
 
+	f.setJMenuBar(menuBar());
 	f.add(titleLabel(), BorderLayout.NORTH);
 	f.add(displayPanel, BorderLayout.CENTER);
 	f.add(panel, BorderLayout.SOUTH);
