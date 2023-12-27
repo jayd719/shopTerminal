@@ -41,6 +41,7 @@ public class Main {
 	JMenu functions = new JMenu("Functions");
 
 	JMenuItem updateLive = new JMenuItem("Update CBB Live Excel File");
+
 	updateLive.addActionListener(new ActionListener() {
 
 	    @Override
@@ -85,8 +86,8 @@ public class Main {
 	panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 	panel.setSize(100, 200);
 	panel.setBackground(Color.gray);
-	panel.add(new JLabel(String.format("Working Directory:-%50s", GetFiles.DEFAULT_ADDRESS)));
-	panel.add(new JLabel(String.format("File Directory:-%30s", GetFiles.getFilesDirectory())));
+	panel.add(new JLabel(String.format("%-30s%s", "Working Directory:", GetFiles.DEFAULT_ADDRESS)));
+	panel.add(new JLabel(String.format("%-33s%s", "Files Directory:", GetFiles.getFilesDirectory())));
 
 	JPanel displayPanel = new JPanel();
 	displayPanel.setLayout(new GridLayout(30, 2));
@@ -100,6 +101,8 @@ public class Main {
 	f.add(displayPanel, BorderLayout.CENTER);
 	f.add(panel, BorderLayout.SOUTH);
 //	GetFiles.getWorkOrders();
+
+	new WorkOrder(null, null, null);
 
 	f.setVisible(true);
 

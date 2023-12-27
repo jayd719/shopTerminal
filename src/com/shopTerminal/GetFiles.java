@@ -32,6 +32,7 @@ public class GetFiles {
 	try {
 	    Scanner scan = new Scanner(new File(DATAFILES + "workorders.txt"));
 	    while (scan.hasNext()) {
+
 		dir.add(scan.next());
 	    }
 	} catch (FileNotFoundException e) {
@@ -41,7 +42,6 @@ public class GetFiles {
 	    dir.add("DATAFILES NOT FOUND");
 	}
 
-	System.out.print(dir);
 	return dir;
     }
 
