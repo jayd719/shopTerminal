@@ -92,8 +92,13 @@ public class Main {
 	JPanel displayPanel = new JPanel();
 	displayPanel.setLayout(new GridLayout(30, 2));
 	displayPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-	for (String wo : GetFiles.getWorkOrders()) {
-	    displayPanel.add(new JLabel(wo));
+
+	for (WorkOrder wo : GetFiles.getWorkOrders()) {
+	    JPanel rowPanel = new JPanel();
+	    rowPanel.add(new JLabel(wo.getJobNumber()));
+	    rowPanel.add(new JLabel(wo.getCustomer()));
+	    rowPanel.add(new JLabel(wo.getDueDate()));
+	    displayPanel.add(rowPanel);
 	}
 
 	f.setJMenuBar(menuBar());

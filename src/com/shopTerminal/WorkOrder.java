@@ -4,12 +4,15 @@
 package com.shopTerminal;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 /**
  *
  */
 public class WorkOrder {
+    private DateTimeFormatter DUEDATEFORMAT = DateTimeFormatter.ofPattern("dd-MMM-yy");
+
     private final String jobNumber;
     private final String customer;
     private LocalDate dueDate;
@@ -46,8 +49,8 @@ public class WorkOrder {
     /**
      * @return
      */
-    public LocalDate getDueDate() {
-	return dueDate;
+    public String getDueDate() {
+	return dueDate.format(DUEDATEFORMAT);
     }
 
     public long getDays() {
